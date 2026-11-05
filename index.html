@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RUNTIME — Code the World</title>
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="stylesheet" href="css/studio.css">
+  <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <header class="studio-header">
+    <a class="studio-brand" href="./"><span class="brand-mark">R<span>_</span></span><span>RUNTIME<small>Code the World</small></span></a>
+    <div class="session-label"><i></i> Lab online <span>/ 01</span></div>
+    <div class="header-actions"><button id="sound" aria-pressed="false">♪ Sound off</button><button id="present" aria-pressed="false">Present ↗</button></div>
+  </header>
+  <main class="studio">
+    <nav class="level-bar" aria-label="Choose a level"><div><label for="level-select">CHOOSE A MISSION · ALL UNLOCKED</label><select id="level-select"></select></div><p id="level-description"></p><button id="next-level" disabled>Next level →</button></nav>
+    <section class="scene-panel" aria-label="3D game world">
+      <div class="scene-heading"><span class="chapter" id="level-concept"></span><h1 id="level-title"></h1><p id="objective"></p><span id="puzzle-state" class="puzzle-state" role="status"></span></div>
+      <div id="world" class="grid" aria-label="Loading 3D world"></div>
+      <div class="scene-tools"><button id="inspect-robot" title="Toggle close-up model view">◎ Meet R-01</button><button id="camera-home" title="Reset camera">◈ Home view</button><button id="camera-top">▦ Top view</button></div>
+      <div class="scene-playback"><button id="showcase-demo">✦ Play demo</button><button id="showcase-stop" disabled>■ Stop</button><span id="scene-status" aria-live="polite">Ready to run</span></div>
+      <span class="scene-stamp">SECTOR 01<br><b>THE FIRST CONNECTION</b></span>
+      <div class="scene-bottom"><span id="view-notice">Drag to orbit · Scroll to zoom</span><span id="position">POS 1, 6</span></div>
+      <div class="scene-legend"><span><i class="robot-key"></i>Robot</span><span><i class="goal-key"></i>Exit</span><span>⚿ Key · ⌁ Switch · ϟ Batteries</span></div>
+    </section>
+    <aside class="code-dock" aria-labelledby="editor-title">
+      <details class="mobile-mission"><summary>Mission objective</summary><p id="mobile-mission"></p></details>
+      <div class="dock-heading"><span class="eyebrow">MISSION CONTROL</span><span class="live-dot">Connected</span></div>
+      <h2 id="editor-title">Your code. Your world.</h2>
+      <p class="dock-intro">Write a command. Watch what happens.</p>
+      <div class="editor-toolbar"><label for="code"><span class="file-dot"></span> mission.js</label><span>JavaScript</span></div>
+      <div class="editor-shell"><pre id="line-numbers" aria-hidden="true"></pre><textarea id="code" aria-label="Your code" spellcheck="false" autocomplete="off" aria-describedby="prototype-note"></textarea></div>
+      <div class="command-shelf" aria-label="Insert movement command"><span>Add command</span><button data-command="moveUp" title="Insert player.moveUp()" aria-label="Insert move up">↑</button><button data-command="moveLeft" title="Insert player.moveLeft()" aria-label="Insert move left">←</button><button data-command="moveDown" title="Insert player.moveDown()" aria-label="Insert move down">↓</button><button data-command="moveRight" title="Insert player.moveRight()" aria-label="Insert move right">→</button></div>
+      <div class="controls"><button id="run" class="primary">▶ Run code <kbd>Ctrl ↵</kbd></button><button id="step" title="Execute one command">Step</button><button id="stop" disabled>Stop</button><button id="reset" title="Reset the world, keep your code">↺ Reset</button></div>
+      <div class="quick-tools"><button id="demo">✦ Try a demo</button><button id="hint" aria-expanded="false" aria-controls="hint-text">Hint ?</button></div>
+      <p id="hint-text" class="hint" hidden></p>
+      <details class="help"><summary>What can I write?</summary><p id="prototype-note">Use player.moveUp(), player.moveDown(), player.moveLeft() and player.moveRight(). Directions follow the map axes, even after rotating the camera. Variables and loops are not supported yet.<br>Run starts from the beginning. Reset keeps your code. Valid commands play before the first unreadable statement.</p></details>
+      <div class="robot-comms"><span class="comms-icon">⌁</span><div><span class="eyebrow">R-01 COMMS</span><p id="robot-message" aria-live="polite"></p></div></div>
+      <div class="telemetry"><div><span class="eyebrow">STATUS</span><strong id="status" role="status">Ready to run</strong></div><div><span class="eyebrow">QUEUE</span><span id="queue">No commands yet</span></div></div>
+      <div class="budget-row"><span id="budget-text">0 / 1000 commands</span><meter id="budget" min="0" max="1000" value="0" aria-label="Executed commands">0</meter></div>
+      <details class="execution-history"><summary>Experiment log <span>Last 8 events</span></summary><ol id="execution-log"></ol></details>
+    </aside>
+  </main>
+  <div class="studio-footer"><span>Learn by making things happen.</span><span>Write <i>→</i> Run <i>→</i> Observe <i>→</i> Understand</span><span>RUNTIME LAB / V.03</span></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

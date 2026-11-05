@@ -1,0 +1,7 @@
+{
+  "name": "runtime-code-the-world",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node server.mjs", "test": "node --test tests/runtime.test.mjs" },
+  "dependencies": { "three": "0.180.0" }
+}
